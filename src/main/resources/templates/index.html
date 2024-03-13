@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <style>
+        .btn-send-secret {
+            background: #8BC34A;
+            color: white;
+        }
+
+        .btn-send-secret:hover {
+            background: #689F38;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
+    <title>Main Page</title>
+</head>
+
+<body>
+<div class="container">
+    <h2>Welcome to the Main Page</h2>
+    <a th:href="@{/send-secret}" class="btn btn-send-secret">Go to Send Secret</a>
+</div>
+</body>
+
+</html>

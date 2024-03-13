@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
+
+    <changeSet id="create users table" author="Vitalii Kolesov">
+        <createTable tableName="users">
+            <column name="username" type="varchar">
+                <constraints primaryKey="true" primaryKeyName="users_PK"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create authorities table" author="Vitalii Kolesov">
+        <createTable tableName="authorities">
+            <column name="username" type="varchar">
+                <constraints nullable="false" foreignKeyName="authorities_users_FK"
+                             referencedTableName="users" referencedColumnNames="username"/>
+            </column>
+            <column name="authority" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <addUniqueConstraint tableName="authorities" columnNames="username, authority"/>
+    </changeSet>
+
+    <changeSet id="create secrets table" author="Vitalii Kolesov">
+        <createTable tableName="secrets">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" primaryKeyName="secrets_PK"/>
+            </column>
+            <column name="encoded_secret" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
